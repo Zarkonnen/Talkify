@@ -1,0 +1,7 @@
+Talkify
+What is Talkify?
+- A tiny compiler of text to slides.
+- Ingests simple text format.
+- Produces standalone HTML files.
+Why?
+- It was easier than dealing with Google slides.
