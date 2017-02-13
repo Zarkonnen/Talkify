@@ -1,35 +1,10 @@
-import sys, json
 
-image_suffixes = [".png", ".jpg", ".jpeg", ".gif", ".bmp"]
-slides = []
-
-with open(sys.argv[1]) as f:
-    slide = dict()
-    slide["points"] = []
-    for l in f:
-        l = l[:-1]
-        if l.startswith("- "):
-            slide["points"].append(l[2:])
-        else:
-            if "title" in slide:
-                slides.append(slide)
-                slide = dict()
-                slide["points"] = []
-            slide["title"] = l
-            if any(l.lower().endswith(suffix) for suffix in image_suffixes):
-                slide["image"] = l
-    if "title" in slide:
-        slides.append(slide)
-print """
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>""",
-
-print slides[0]["title"]
-
-print """</title>
+<title> talkify.png
+</title>
 <style>
 html {
     cursor: none;
@@ -64,11 +39,7 @@ body {
 }
 </style>
 <script>
-var slides =""",
-
-print json.dumps(slides),
-
-print """;
+var slides = [{"image": "talkify.png", "points": [], "title": "talkify.png"}, {"points": ["A tiny compiler of text to slides.", "Ingests simple text format.", "Produces standalone HTML files."], "title": "What is Talkify?"}, {"points": ["It was easier than dealing with Google slides."], "title": "Why?"}] ;
 </script>
 <script>
 var index = 0;
@@ -118,4 +89,4 @@ showSlide();
 </script>
 </body>
 </html>
-"""
+
